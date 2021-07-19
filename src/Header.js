@@ -11,9 +11,9 @@ export default function Header({ toggleCart, cartQuantity}) {
         <CubeIcon />
       </LogoContainer>
       <NavItems>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/shop">Shop</NavLink>
+        <NavLink to="/react-shopping-cart/">Home</NavLink>
+        <NavLink to="/react-shopping-cart/about">About</NavLink>
+        <NavLink to="/react-shopping-cart/shop">Shop</NavLink>
         <CartIconsContainer>
           <CartIcon onClick={(e) => toggleCart(e)} />
           <CartItemsCount cartQuantity={cartQuantity}>
