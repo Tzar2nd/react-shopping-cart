@@ -8,7 +8,7 @@ export default function Body({ cartContainsItem, addCartItem, removeCartItem }) 
   return (
     <BodyContainer>
       <Switch>
-        <Route path="/" exact component={Home} />
+        <Route path="/" component={Home} />
         <Route path="/about" component={About} />
         <Route
           path="/shop"
