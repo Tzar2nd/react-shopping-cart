@@ -1,7 +1,7 @@
 {
   "name": "react-shopping-cart",
   "version": "0.1.0",
-  "homepage": "http://Tzar2nd.github.io/react-shopping-cart",
+  "homepage": "http://tzar2nd.github.io/react-shopping-cart",
   "private": true,
   "dependencies": {
     "@styled-icons/boxicons-logos": "^10.34.0",
