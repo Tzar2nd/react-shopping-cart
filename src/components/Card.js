@@ -1,13 +1,7 @@
 import styled from "styled-components";
 import { Plus } from "@styled-icons/boxicons-regular/Plus";
 import { Minus } from "@styled-icons/boxicons-regular/Minus";
-
-const formatPrice = (price) => {
-  return price.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
-};
+import { formatPrice } from '../utils/Utils'
 
 const Card = ({
   item,

@@ -68,6 +68,9 @@ function App() {
         show={showCart}
         toggleCart={toggleCart}
         getCartItems={getCartItems}
+        addCartItem={addCartItem}
+        removeCartItem={removeCartItem}
+        cartContainsItem={cartContainsItem}
       />
       <Header toggleCart={toggleCart} cartQuantity={cartQuantity}>
         Home page

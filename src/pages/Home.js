@@ -3,11 +3,6 @@ import background from "../assets/pram1.jpg";
 import pram from "../assets/pram2.jpg";
 import { Parallax } from "react-parallax";
 
-const parallaxScale = (perspective, distance) => {
-  console.log((perspective - distance) / perspective);
-  return (perspective - distance) / perspective;
-};
-
 const HomeContainer = styled.div`
   overflow-x: hidden;
   textalign: center;

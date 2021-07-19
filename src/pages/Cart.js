@@ -1,18 +1,37 @@
 import styled from "styled-components";
 import CartCard from "../components/CartCard";
+import { formatPrice } from '../utils/Utils';
 
-const CartItem = (item) => <CartCard item={item} />;
+const Cart = ({
+  show,
+  toggleCart,
+  getCartItems,
+  addCartItem,
+  removeCartItem,
+  cartContainsItem,
+}) => {
 
-const Cart = ({ show, toggleCart, getCartItems }) => {
   return (
     <CartBackground
       show={show}
       onClick={(e) => e.target === e.currentTarget && toggleCart()}
     >
       <CartContainer show={show}>
-        <p>Cart</p>
-        {getCartItems().map((item) => CartItem(item))}
+        <p>Shopping Cart</p>
+        {getCartItems().length === 0 ? <p>Your cart is empty</p> : '' }
+        {getCartItems().map((item) =>
+            <CartCard
+            key={item.id}
+            item={item}
+            addCartItem={addCartItem}
+            removeCartItem={removeCartItem}
+            cartContainsItem={cartContainsItem}
+          />
+        )}
+      <div>Grand Total: {formatPrice(getCartItems().reduce((total, item) => total + item.price * item.quantity, 0))}</div>
+      <CartButton onClick={() => alert(`This isn't a real store :)`)}>Pay</CartButton>
       </CartContainer>
+
     </CartBackground>
   );
 };
@@ -35,7 +54,8 @@ const CartContainer = styled.div`
   align-items: center;
   z-index: 2;
   height: 80%;
-  width: 60%;
+  width: fit-content;
+  min-width: 500px;
   overflow: auto;
   padding: 1rem;
   margin-left: auto;
@@ -48,6 +68,15 @@ const CartContainer = styled.div`
   box-shadow: 0px 5px 5px 2px rgba(0, 0, 0, 0.5);
   border-bottom: 16px solid #fff;
   border-top: 16px solid #fff;
+`;
+
+const CartButton = styled.button`
+  padding: 1rem;
+  pointer: cursor;
+  margin-left: auto;
+  margin-right: 1rem;
+  background: ${({theme}) => theme.colors.secondary};
+  border: 2px solid gray;
 `;
 
 export default Cart;
