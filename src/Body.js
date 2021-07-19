@@ -15,7 +15,6 @@ export default function Body({ cartContainsItem, addCartItem, removeCartItem }) 
           exact
           render={(props) => (
             <Shop
-              {...props}
               cartContainsItem={cartContainsItem}
               addCartItem={addCartItem}
               removeCartItem={removeCartItem}

@@ -12,38 +12,63 @@ function App() {
   const toggleCart = () => setShowCart(!showCart);
 
   useEffect(() => {
-    console.log(cartItems);
-  });
+    console.table(cartItems);
+  }, [cartItems]);
 
-  const cartContainsItem = (item) => {
-    return cartItems.includes(item);
+  const cartContainsItem = (id) => {
+    return cartItems.some((item) => item.id === id);
   };
 
   const addCartItem = (item) => {
-    console.log(item);
-    setCartItems([...cartItems, item.id]);
+    if (!cartContainsItem(item.id)) {
+      setCartItems([...cartItems, { ...item, quantity: 1 }]);
+    } else {
+      setCartItems(
+        cartItems.map((cartItem) =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
+        )
+      );
+    }
+
     setCartQuantity(cartQuantity + 1);
   };
 
-  const removeCartItem = (item) => {
-    const newCartItems = cartItems;
+  const removeCartItem = (id) => {
+    // if it is the last item in the cart, remove it
+    if (cartContainsItem(id)) {
+      const item = cartItems.find((cartItem) => cartItem.id === id);
+      if (item.quantity === 1) {
+        setCartItems(cartItems.filter((cartItem) => cartItem.id !== id));
+      }
 
-    if (newCartItems.includes(item)) {
-      newCartItems.splice(cartItems.lastIndexOf(item.id), 1);
-      setCartQuantity(cartQuantity - 1);
-      setCartItems(cartItems, newCartItems);
+      // otherwise just reduce the quantity by one
+      else {
+        setCartItems(
+          cartItems.map((cartItem) =>
+            cartItem.id === id
+              ? { ...cartItem, quantity: cartItem.quantity - 1 }
+              : cartItem
+          )
+        );
+      }
     }
+
+    setCartQuantity(cartQuantity - 1);
   };
 
-  const listCartItems = () => {
-    return cartItems.map((item) => {
-      return <p>{item}</p>;
-    });
+  const getCartItems = () => {
+    return cartItems;
   };
 
   return (
     <div>
-      <Cart show={showCart} listCartItems={listCartItems} />
+      <Cart
+        show={showCart}
+        toggleCart={toggleCart}
+        getCartItems={getCartItems}
+      />
       <Header toggleCart={toggleCart} cartQuantity={cartQuantity}>
         Home page
       </Header>

@@ -21,8 +21,8 @@ const Card = ({
       <ItemDescription>{item.title}</ItemDescription>
       <CardDetailsContainer>
         <CardMinus
-          cartContainsItem={cartContainsItem(item)}
-          onClick={() => removeCartItem(item)}
+          cartContainsItem={cartContainsItem(item.id)}
+          onClick={() => removeCartItem(item.id)}
         />
         <ItemPrice>{formatPrice(item.price)}</ItemPrice>
         <CardPlus onClick={() => addCartItem(item)} />
@@ -36,7 +36,7 @@ const CardDetailsContainer = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  background: yellow;
+  background: ${({theme}) => theme.colors.secondary};
 `;
 
 const CardPlus = styled(Plus)`

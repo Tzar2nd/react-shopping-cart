@@ -15,7 +15,7 @@ export default function Header({ toggleCart, cartQuantity}) {
         <NavLink to="/about">About</NavLink>
         <NavLink to="/shop">Shop</NavLink>
         <CartIconsContainer>
-          <CartIcon onClick={(e) => toggleCart()} />
+          <CartIcon onClick={(e) => toggleCart(e)} />
           <CartItemsCount cartQuantity={cartQuantity}>
             {cartQuantity}
           </CartItemsCount>
@@ -30,10 +30,10 @@ const NavLink = styled(Link)`
   display: flex;
   flex-direction: column;
   margin: auto;
-  color: white;
+  color: ${({ theme }) => theme.colors.text.primary};
   text-decoration: none;
   &:hover {
-    color: yellow;
+    color: ${({ theme }) => theme.colors.secondary};
   }
 `;
 
@@ -42,7 +42,7 @@ const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem;
-  background: #bbb;
+  background: ${({ theme }) => theme.colors.primary};
 `;
 
 const LogoContainer = styled.div`
@@ -57,7 +57,7 @@ const Logo = styled.h1`
 
 const CubeIcon = styled(Cubes)`
   width: 50px;
-  color: white;
+  color: ${({ theme }) => theme.colors.icons.cubeIcon};
 `;
 
 const CartIconsContainer = styled.div`
@@ -67,7 +67,7 @@ const CartIconsContainer = styled.div`
 
 const CartIcon = styled(BabyCarriage)`
   width: 40px;
-  color: white;
+  color: ${({ theme }) => theme.colors.icons.cartIcon};
   cursor: pointer;
   user-select: none;
 `;
