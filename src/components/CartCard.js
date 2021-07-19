@@ -13,14 +13,17 @@ const CartCard = ({ item, addCartItem, removeCartItem, cartContainsItem }) => {
             display: "flex",
             flexDirection: "column",
             paddingLeft: "1rem",
+            maxLength: "100px",
           }}
         >
           <div>{item.title}</div>
           <div>{formatPrice(item.price)}</div>
         </div>
       </div>
-      <div>Quantity: {item.quantity}</div>
-      <div>
+      <div style={{ minWidth: "100px", alignSelf: "right" }}>
+        Quantity: {item.quantity}
+      </div>
+      <div style={{ minWidth: "60px", flexWrap: "none" }}>
         <CardMinus
           cartContainsItem={cartContainsItem(item.id)}
           onClick={() => removeCartItem(item.id)}
@@ -51,11 +54,15 @@ const CardImage = styled.img`
 const CardPlus = styled(Plus)`
   height: 24px;
   cursor: pointer;
+  margin: 0.2rem;
+  background: ${({ theme }) => theme.colors.primary};
 `;
 
 const CardMinus = styled(Minus)`
   height: 24px;
   cursor: pointer;
+  margin: 0.2rem;
+  background: ${({ theme }) => theme.colors.primary};
 `;
 
 export default CartCard;
